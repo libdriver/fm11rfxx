@@ -15,7 +15,7 @@ LibDriver FM11RFXX is the full function driver of FM11RFXX launched by LibDriver
 This repository includes submodule and you shold add "--recursive" to clone the whole project.
 
 ```shell
-https://github.com/libdriver/fm11rfxx.git --recursive
+git clone https://github.com/libdriver/fm11rfxx.git --recursive
 ```
 
 ### Table of Contents
