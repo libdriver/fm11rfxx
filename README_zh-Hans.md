@@ -8,7 +8,7 @@
 
 [![MISRA](https://img.shields.io/badge/misra-compliant-brightgreen.svg)](/misra/README.md) [![API](https://img.shields.io/badge/api-reference-blue.svg)](https://www.libdriver.com/docs/fm11rfxx/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
-FM11RFXX是上海复旦微电子有限公司开发的非接触式IC卡芯片，该芯片具有1K×8bits EEPROM和4K×8bit EEPROM两种大小，读取器天线和非接触式卡之间的最大通信范围约为10cm，数据以106Kbit/s的速率进行半双工交换。FM11RFXX是一款真正的多应用智能卡，具有用硬件逻辑实现的处理器卡的功能，并且具有非常高的加密和通信电路安全性能，因此FM11RFX可以特别定制以满足支付卡的要求，该支付卡可用于公共交通和类似应用的票务系统。非接触式智能卡包含三个组件：FM11RFXX芯片天线和PVC（或PET）材料的卡底座。不需要电池。当芯片位于耦合设备天线附近时，高速RF通信接口允许以106Kbit/s的速度传输数据。
+FM11RFXX是上海复旦微电子有限公司开发的非接触式IC卡芯片，该芯片具有1K×8bits EEPROM和4K×8bit EEPROM两种大小，读取器天线和非接触式卡之间的最大通信范围约为10cm，数据以106Kbit/s的速率进行半双工交换。FM11RFXX是一款真正的多应用智能卡，具有用硬件逻辑实现的处理器卡的功能，并且具有非常高的加密和通信电路安全性能，因此FM11RFX可以特别定制以满足支付卡的要求，该支付卡可用于公共交通和类似应用的票务系统。非接触式智能卡包含三个组件：FM11RFXX芯片天线和PVC（或PET）材料的卡底座。芯片不需要电池，当芯片位于耦合设备天线附近时，高速RF通信接口允许以106Kbit/s的速度传输数据。
 
 LibDriver FM11RFXX是LibDriver推出的FM11RFXX全功能驱动，该驱动提供块读取，块写入，数值增加，数值减少等功能并且它符合MISRA标准。
 
