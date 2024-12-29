@@ -62,10 +62,10 @@ uint8_t fm11rfxx_interface_contactless_deinit(void)
 
 /**
  * @brief         interface contactless transceiver
- * @param[in]     *in_buf points to a input buffer
- * @param[in]     in_len is the input length
- * @param[out]    *out_buf points to a output buffer
- * @param[in,out] *out_len points to a output length buffer
+ * @param[in]     *in_buf pointer to an input buffer
+ * @param[in]     in_len input length
+ * @param[out]    *out_buf pointer to an output buffer
+ * @param[in,out] *out_len pointer to an output length buffer
  * @return        status code
  *                - 0 success
  *                - 1 contactless transceiver failed
@@ -78,7 +78,7 @@ uint8_t fm11rfxx_interface_contactless_transceiver(uint8_t *in_buf, uint8_t in_l
 
 /**
  * @brief     interface delay ms
- * @param[in] ms
+ * @param[in] ms time
  * @note      none
  */
 void fm11rfxx_interface_delay_ms(uint32_t ms)
@@ -88,7 +88,7 @@ void fm11rfxx_interface_delay_ms(uint32_t ms)
 
 /**
  * @brief     interface print format data
- * @param[in] fmt is the format data
+ * @param[in] fmt format data
  * @note      none
  */
 void fm11rfxx_interface_debug_print(const char *const fmt, ...)
