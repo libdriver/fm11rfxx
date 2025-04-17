@@ -10,7 +10,7 @@
 
 FM11RFXX is the contactless IC card chip development by Shanghai FM Co. Ltd. The chip has 1K x 8bits EEPROM or 4K x 8bits EEPROM organization, the maximum communication range between the reader antenna and contactless card is approximately 10cm, data is exchanged half duplex at a 106 Kbit/s rate.The FM11RFXX is a true multi-application smart card with the functionality of a processor card realized with hardware logic, and also has a very high security performance with the encryption and communication circuit, so FM11RFXX can be especially tailored to meet the requirements of a payment card which can be used for ticketing systems in public transport and comparable applications. The contactless smart card contains three components: FM11RFXX chip antenna and the card base with PVC (or PET) material. No battery is needed. When the chip is positioned in proximity of the coupling device antenna, the high speed RF communication interface allows transmitting data with 106 Kbit/s.
 
-LibDriver FM11RFXX is the full function driver of FM11RFXX launched by LibDriver.It provides the function of read block, write block, value increment, value decrement and so on. LibDriver is MISRA compliant.
+LibDriver FM11RFXX is a full-featured driver of FM11RFXX launched by LibDriver.It provides the function of read block, write block, value increment, value decrement and so on. LibDriver is MISRA compliant.
 
 This repository includes submodule and you shold add "--recursive" to clone the whole project.
 
