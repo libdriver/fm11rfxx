@@ -988,6 +988,12 @@ uint8_t fm11rfxx_write(fm11rfxx_handle_t *handle, uint8_t block, uint8_t data[16
         
         return 1;                                                                                /* return error */
     }
+    if (output_len != 1)                                                                         /* check the output_len */
+    {
+        handle->debug_print("fm11rfxx: output_len is invalid.\n");                               /* output_len is invalid */
+        
+        return 4;                                                                                /* return error */
+    }
     if (output_buf[0] != 0xA)                                                                    /* check the result */
     {
         handle->debug_print("fm11rfxx: ack error.\n");                                           /* ack error */
@@ -1092,6 +1098,12 @@ uint8_t fm11rfxx_value_init(fm11rfxx_handle_t *handle, uint8_t block, int32_t va
         
         return 1;                                                                                /* return error */
     }
+    if (output_len != 1)                                                                         /* check the output_len */
+    {
+        handle->debug_print("fm11rfxx: output_len is invalid.\n");                               /* output_len is invalid */
+        
+        return 4;                                                                                /* return error */
+    }
     if (output_buf[0] != 0xA)                                                                    /* check the result */
     {
         handle->debug_print("fm11rfxx: ack error.\n");                                           /* ack error */
@@ -1195,6 +1207,12 @@ uint8_t fm11rfxx_value_write(fm11rfxx_handle_t *handle, uint8_t block, int32_t v
         handle->debug_print("fm11rfxx: contactless transceiver failed.\n");                      /* contactless transceiver failed */
         
         return 1;                                                                                /* return error */
+    }
+    if (output_len != 1)                                                                         /* check the output_len */
+    {
+        handle->debug_print("fm11rfxx: output_len is invalid.\n");                               /* output_len is invalid */
+        
+        return 4;                                                                                /* return error */
     }
     if (output_buf[0] != 0xA)                                                                    /* check the result */
     {
@@ -1886,6 +1904,12 @@ uint8_t fm11rfxx_set_sector_permission(fm11rfxx_handle_t *handle,
         handle->debug_print("fm11rfxx: contactless transceiver failed.\n");                      /* contactless transceiver failed */
         
         return 1;                                                                                /* return error */
+    }
+    if (output_len != 1)                                                                         /* check the output_len */
+    {
+        handle->debug_print("fm11rfxx: output_len is invalid.\n");                               /* output_len is invalid */
+        
+        return 4;                                                                                /* return error */
     }
     if (output_buf[0] != 0xA)                                                                    /* check the result */
     {
