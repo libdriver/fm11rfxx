@@ -234,14 +234,22 @@ uint8_t fm11rfxx_request(fm11rfxx_handle_t *handle, fm11rfxx_type_t *type)
         
         return 4;                                                                                /* return error */
     }
-    if ((output_buf[0] == 0x04) && (output_buf[1] == 0x00))                                      /* check classic type */
+    if (output_buf[1] != 0x00)                                                                   /* check the high byte of atoa */
+    {
+        *type = FM11RFXX_TYPE_INVALID;                                                           /* invalid */
+        handle->type = *type;                                                                    /* save the type */
+        handle->debug_print("fm11rfxx: type is invalid.\n");                                     /* type is invalid */
+        
+        return 5;                                                                                /* return error */
+    }
+    if ((output_buf[0] == 0x04) || (output_buf[0] == 0x44))                                      /* check params */
     {
         *type = FM11RFXX_TYPE_FM11RF08;                                                          /* fm11rf08 */
         handle->type = *type;                                                                    /* save the type */
         
         return 0;                                                                                /* success return 0 */
     }
-    else if ((output_buf[0] == 0x02) && (output_buf[1] == 0x00))                                 /* check classic type */
+    else if ((output_buf[0] == 0x02) || (output_buf[0] == 0x42))                                 /* check params */
     {
         *type = FM11RFXX_TYPE_FM11RF32;                                                          /* fm11rf32 */
         handle->type = *type;                                                                    /* save the type */
@@ -304,14 +312,22 @@ uint8_t fm11rfxx_wake_up(fm11rfxx_handle_t *handle, fm11rfxx_type_t *type)
         
         return 4;                                                                                /* return error */
     }
-    if ((output_buf[0] == 0x04) && (output_buf[1] == 0x00))                                      /* check classic type */
+    if (output_buf[1] != 0x00)                                                                   /* check the high byte of atoa */
+    {
+        *type = FM11RFXX_TYPE_INVALID;                                                           /* invalid */
+        handle->type = *type;                                                                    /* save the type */
+        handle->debug_print("fm11rfxx: type is invalid.\n");                                     /* type is invalid */
+        
+        return 5;                                                                                /* return error */
+    }
+    if ((output_buf[0] == 0x04) || (output_buf[0] == 0x44))                                      /* check params */
     {
         *type = FM11RFXX_TYPE_FM11RF08;                                                          /* fm11rf08 */
         handle->type = *type;                                                                    /* save the type */
         
         return 0;                                                                                /* success return 0 */
     }
-    else if ((output_buf[0] == 0x02) && (output_buf[1] == 0x00))                                 /* check classic type */
+    else if ((output_buf[0] == 0x02) || (output_buf[0] == 0x42))                                 /* check params */
     {
         *type = FM11RFXX_TYPE_FM11RF32;                                                          /* fm11rf32 */
         handle->type = *type;                                                                    /* save the type */
@@ -628,6 +644,7 @@ uint8_t fm11rfxx_anticollision_cl2(fm11rfxx_handle_t *handle, uint8_t id[4])
  *            - 3 handle is not initialized
  *            - 4 output_len is invalid
  *            - 5 sak error
+ *            - 6 cascade required, continue with anticollision_cl2
  * @note      none
  */
 uint8_t fm11rfxx_select_cl1(fm11rfxx_handle_t *handle, uint8_t id[4])
@@ -672,8 +689,20 @@ uint8_t fm11rfxx_select_cl1(fm11rfxx_handle_t *handle, uint8_t id[4])
         
         return 4;                                                                                /* return error */
     }
-    if ((output_buf[0] == 0x08) || (output_buf[0] == 0x18))                                      /* check the sak */
+    if (output_buf[0] == 0x04)                                                                   /* uid not complete */
     {
+        return 6;                                                                                /* cascade required, call cl2 */
+    }
+    else if (output_buf[0] == 0x08)                                                              /* check the sak, fm11rf08 */
+    {
+        handle->type = FM11RFXX_TYPE_FM11RF08;                                                   /* save the type */
+        
+        return 0;                                                                                /* success return 0 */
+    }
+    else if (output_buf[0] == 0x18)                                                              /* check the sak, fm11rf32 */
+    {
+        handle->type = FM11RFXX_TYPE_FM11RF32;                                                   /* save the type */
+        
         return 0;                                                                                /* success return 0 */
     }
     else
@@ -739,8 +768,16 @@ uint8_t fm11rfxx_select_cl2(fm11rfxx_handle_t *handle, uint8_t id[4])
         
         return 4;                                                                                /* return error */
     }
-    if ((output_buf[0] == 0x08) || (output_buf[0] == 0x18))                                      /* check the sak */
+    if (output_buf[0] == 0x08)                                                                   /* check the sak, fm11rf08 */
     {
+        handle->type = FM11RFXX_TYPE_FM11RF08;                                                   /* save the type */
+        
+        return 0;                                                                                /* success return 0 */
+    }
+    else if (output_buf[0] == 0x18)                                                              /* check the sak, fm11rf32 */
+    {
+        handle->type = FM11RFXX_TYPE_FM11RF32;                                                   /* save the type */
+        
         return 0;                                                                                /* success return 0 */
     }
     else
